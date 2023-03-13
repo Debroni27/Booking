@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "booking(fastapi)"
+version = "0.1.0"
+description = "API for use booking service"
+authors = ["Ilya Kibirev <kibirev.i@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
