@@ -1,10 +1,19 @@
 version: '3.9'
 
+x-db:
+  database_root: &db_name_root "test"
+  database_username_root: &db_username_root "dev-user"
+  database_password_root: &db_password_root "dev-pass"
+
 services:
   mongodb:
     image: mongo:latest
     container_name: mongo 
     restart: on-failure
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: *db_username_root
+      MONGO_INITDB_ROOT_PASSWORD: *db_password_root
+      MONGO_INITDB_DATABASE: *db_name_root
     volumes:
       - mongo-data:/data/db
       - ./log:/var/log/
