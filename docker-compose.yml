@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongo 
+    restart: on-failure
+    volumes:
+      - mongo-data:/data/db
+      - ./log:/var/log/
+    ports:
+      - "27017:27017"
+    networks:
+      - booking
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  mongo-data:
+
+networks:
+  booking:
+    driver: bridge
