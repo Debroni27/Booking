@@ -1,21 +1,21 @@
-
 import logging
 import pathlib
 
 import decouple
 import pydantic
 
-ROOT_DIR: pathlib.Path = pathlib.Path(__file__).parent.parent.parent.parent.parent.resolve()
+ROOT_DIR: pathlib.Path = pathlib.Path(
+    __file__
+).parent.parent.parent.parent.parent.resolve()
 
 
 class BackendBaseSettings(pydantic.BaseSettings):
-
     TITLE: str = "API for boooking"
     VERSION: str = "0.1.0"
     TIMEZONE: str = "UTC"
     DESCRIPTION: str | None = None
     DEBUG: bool = False
-    
+
     SERVER_HOST: str = decouple.config("BACKEND_SERVER_HOST", cast=str)  # type: ignore
     SERVER_PORT: int = decouple.config("BACKEND_SERVER_PORT", cast=int)  # type: ignore
     SERVER_WORKERS: int = decouple.config("BACKEND_SERVER_WORKERS", cast=int)  # type: ignore
@@ -32,7 +32,7 @@ class BackendBaseSettings(pydantic.BaseSettings):
     MONGODB_PASSWORD: str = decouple.config("POSTGRES_PASSWORD", cast=str)  # type: ignore
     MONGODB_MAX_POOL_SIZE: int = decouple.config("DB_MAX_POOL_CON", cast=int)  # type: ignore
     MONGODB_POOL_SIZE: int = decouple.config("DB_POOL_SIZE", cast=int)  # type: ignore
-    
+
     IS_ALLOWED_CREDENTIALS: bool = decouple.config("IS_ALLOWED_CREDENTIALS", cast=bool)  # type: ignore
     ALLOWED_ORIGINS: list[str] = [
         "http://localhost:3000",
@@ -44,7 +44,7 @@ class BackendBaseSettings(pydantic.BaseSettings):
 
     LOGGING_LEVEL: int = logging.INFO
     LOGGERS: tuple[str, str] = ("uvicorn.asgi", "uvicorn.access")
-    
+
     class Config(pydantic.BaseConfig):
         case_sensitive: bool = True
         env_file: str = f"{str(ROOT_DIR)}/.env"
