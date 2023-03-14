@@ -2,7 +2,7 @@ import fastapi
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.config.manager import settings
+from config.manager import settings
 
 
 def initialize_backend_application() -> fastapi.FastAPI:

@@ -25,13 +25,11 @@ class BackendBaseSettings(pydantic.BaseSettings):
     REDOC_URL: str = "/redoc"
     OPENAPI_PREFIX: str = ""
 
-    MONGODB_HOST: str = decouple.config("POSTGRES_HOST", cast=str)  # type: ignore
-    MONGODB_PORT: int = decouple.config("POSTGRES_PORT", cast=int)  # type: ignore
-    MONGODB_DB_NAME: str = decouple.config("POSTGRES_DB", cast=str)  # type: ignore
-    MONGODB_USENRAME: str = decouple.config("POSTGRES_USERNAME", cast=str)  # type: ignore
-    MONGODB_PASSWORD: str = decouple.config("POSTGRES_PASSWORD", cast=str)  # type: ignore
-    MONGODB_MAX_POOL_SIZE: int = decouple.config("DB_MAX_POOL_CON", cast=int)  # type: ignore
-    MONGODB_POOL_SIZE: int = decouple.config("DB_POOL_SIZE", cast=int)  # type: ignore
+    MONGODB_HOST: str = decouple.config("MONGODB_HOST", cast=str)  # type: ignore
+    MONGODB_PORT: int = decouple.config("MONGODB_PORT", cast=int)  # type: ignore
+    MONGODB_DB_NAME: str = decouple.config("MONGODB_DB_NAME", cast=str)  # type: ignore
+    MONGODB_USENRAME: str = decouple.config("MONGODB_USENRAME", cast=str)  # type: ignore
+    MONGODB_PASSWORD: str = decouple.config("MONGODB_PASSWORD", cast=str)  # type: ignore
 
     IS_ALLOWED_CREDENTIALS: bool = decouple.config("IS_ALLOWED_CREDENTIALS", cast=bool)  # type: ignore
     ALLOWED_ORIGINS: list[str] = [

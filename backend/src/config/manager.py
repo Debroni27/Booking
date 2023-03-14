@@ -2,9 +2,9 @@ from functools import lru_cache
 
 import decouple
 
-from src.config.settings.base import BackendBaseSettings
-from src.config.settings.development import BackendDevSettings
-from src.config.settings.environment import Environment
+from config.settings.base import BackendBaseSettings
+from config.settings.development import BackendDevSettings
+from config.settings.environment import Environment
 
 
 class BackendSettingsFactory:
