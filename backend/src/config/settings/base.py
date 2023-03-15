@@ -5,7 +5,7 @@ import decouple
 import pydantic
 
 ROOT_DIR: pathlib.Path = pathlib.Path(
-    __file__
+    __file__    
 ).parent.parent.parent.parent.parent.resolve()
 
 
@@ -18,7 +18,7 @@ class BackendBaseSettings(pydantic.BaseSettings):
 
     SERVER_HOST: str = decouple.config("BACKEND_SERVER_HOST", cast=str)  # type: ignore
     SERVER_PORT: int = decouple.config("BACKEND_SERVER_PORT", cast=int)  # type: ignore
-    SERVER_WORKERS: int = decouple.config("BACKEND_SERVER_WORKERS", cast=int)  # type: ignore
+
     API_PREFIX: str = "/api"
     DOCS_URL: str = "/docs"
     OPENAPI_URL: str = "/openapi.json"
@@ -26,7 +26,6 @@ class BackendBaseSettings(pydantic.BaseSettings):
     OPENAPI_PREFIX: str = ""
 
     MONGODB_HOST: str = decouple.config("MONGODB_HOST", cast=str)  # type: ignore
-    MONGODB_PORT: int = decouple.config("MONGODB_PORT", cast=int)  # type: ignore
     MONGODB_DB_NAME: str = decouple.config("MONGODB_DB_NAME", cast=str)  # type: ignore
     MONGODB_USENRAME: str = decouple.config("MONGODB_USENRAME", cast=str)  # type: ignore
     MONGODB_PASSWORD: str = decouple.config("MONGODB_PASSWORD", cast=str)  # type: ignore

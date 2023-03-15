@@ -20,6 +20,7 @@ flake8 = "^6.0.0"
 python-decouple = "^3.8"
 pre-commit = "^3.1.1"
 pydantic = {extras = ["dotenv"], version = "^1.10.6"}
+loguru = "^0.6.0"
 
 
 [tool.isort]
