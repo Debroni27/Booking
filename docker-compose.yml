@@ -1,9 +1,9 @@
 version: '3.9'
 
 x-db:
-  database_root: &db_name_root "test"
-  database_username_root: &db_username_root "dev-user"
-  database_password_root: &db_password_root "dev-pass"
+  database_username_root: &db_username_root "admin"
+  database_password_root: &db_password_root "admin"
+  database_db_root: &db_name_root "admin"
 
 services:
   mongodb:
@@ -15,8 +15,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: *db_password_root
       MONGO_INITDB_DATABASE: *db_name_root
     volumes:
-      - mongo-data:/data/db
-      - ./log:/var/log/
+      - ./docker/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
     ports:
       - "27017:27017"
     networks:
