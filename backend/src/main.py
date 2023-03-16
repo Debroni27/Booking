@@ -5,7 +5,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from api.endpoints import router as api_endpoint_router
 from config.manager import settings
-from config.events import execute_backend_server_event_handler, terminate_backend_server_event_handler
+from config.events import (
+    execute_backend_server_event_handler,
+    terminate_backend_server_event_handler,
+)
 
 
 def initialize_backend_application() -> fastapi.FastAPI:
@@ -27,7 +30,7 @@ def initialize_backend_application() -> fastapi.FastAPI:
         "shutdown",
         terminate_backend_server_event_handler(),
     )
-    
+
     app.include_router(router=api_endpoint_router, prefix=settings.API_PREFIX)
 
     return app
