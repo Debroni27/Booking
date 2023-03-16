@@ -1,27 +1,26 @@
 from abc import ABC, abstractmethod
-from api.schemas.base import BaseEntity, EntityId
+from models.base import ABCEntity, EntityId
 
 
-class BaseCRUD(ABC):
-    """Base repository for CRUD methods on entity"""
+class BaseCRUDRepository(ABC):
+    """Basic CRUD repository for working with entities"""
 
-
-    def get_all(self, model: BaseEntity) -> list[BaseEntity]:
+    @abstractmethod
+    def get_all(self) -> list[ABCEntity]:
         pass
 
-    def get(self) -> BaseEntity:
-        return BaseEntity(id=None, created_at="test", updated_at="test")
+    @abstractmethod
+    def get(self, model: ABCEntity, id: EntityId) -> ABCEntity:
+        return ABCEntity(id=None, created_at="test", updated_at="test")
 
-
-    def create(
-        self,
-        model: BaseEntity,
-    ) -> BaseEntity:
+    @abstractmethod
+    def create(self, model: ABCEntity) -> ABCEntity:
         pass
 
-    def update(self, model: BaseEntity, id: EntityId) -> BaseEntity:
+    @abstractmethod
+    def update(self, model: ABCEntity, id: EntityId) -> ABCEntity:
         pass
 
-
-    def delete(self, model: BaseEntity, id: EntityId) -> None:
+    @abstractmethod
+    def delete(self, model: ABCEntity, id: EntityId) -> None:
         pass

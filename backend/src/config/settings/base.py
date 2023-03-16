@@ -5,7 +5,7 @@ import decouple
 import pydantic
 
 ROOT_DIR: pathlib.Path = pathlib.Path(
-    __file__    
+    __file__
 ).parent.parent.parent.parent.parent.resolve()
 
 
