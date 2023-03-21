@@ -1,8 +1,6 @@
 import fastapi
-
-from motor.motor_asyncio import AsyncIOMotorClient
-
 from config.manager import settings
+from motor.motor_asyncio import AsyncIOMotorClient
 
 
 class AsyncMongoDriver:

@@ -1,6 +1,5 @@
 import fastapi
 import loguru
-
 from repository.database import mongo_db
 
 

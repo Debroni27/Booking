@@ -1,27 +1,28 @@
 from abc import ABC, abstractmethod
 
-from models.base import ABCEntity, EntityId
+from config.types import EntityID
+from models.base import FrozenBaseModel
 
 
 class BaseCRUDRepository(ABC):
     """Basic CRUD repository for working with entities"""
 
     @abstractmethod
-    def get_all(self) -> list[ABCEntity]:
+    def get_all(self) -> list[FrozenBaseModel]:
         pass
 
     @abstractmethod
-    def get(self, model: ABCEntity, id: EntityId) -> ABCEntity:
-        return ABCEntity(id=None, created_at="test", updated_at="test")
+    def get(self, model: FrozenBaseModel, id: EntityID) -> FrozenBaseModel:
+        return FrozenBaseModel(id=None, created_at="test", updated_at="test")
 
     @abstractmethod
-    def create(self, model: ABCEntity) -> ABCEntity:
+    def create(self, model: FrozenBaseModel) -> FrozenBaseModel:
         pass
 
     @abstractmethod
-    def update(self, model: ABCEntity, id: EntityId) -> ABCEntity:
+    def update(self, model: FrozenBaseModel, id: EntityID) -> FrozenBaseModel:
         pass
 
     @abstractmethod
-    def delete(self, model: ABCEntity, id: EntityId) -> None:
+    def delete(self, model: FrozenBaseModel, id: EntityID) -> None:
         pass

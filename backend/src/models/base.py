@@ -1,22 +1,26 @@
-from datetime import datetime
-import uuid
-
-from pydantic import BaseModel, Field, UUID4
+import orjson
+from pydantic import BaseModel
 
 
-class EntityId(UUID4):  # type: ignore
+# ABSTRACT BASE MODELS PART
+class FrozenBaseModel(BaseModel):
+    """
+    Хэшируемая дефолтная модель из pydantic
+    """
+
+    class Config:
+        frozen = True
+        use_enum_values = True
+        smart_union = True
+        json_loads = orjson.loads
+
+    def __hash__(self):
+        return hash((type(self),) + tuple(self.__dict__.values()))
+
+
+class BaseRequestModel(FrozenBaseModel):  # type: ignore
     pass
 
 
-class ABCEntity(BaseModel):  # type: ignore
-    id: EntityId = Field(default_factory=uuid.uuid4())
-    created_at: datetime
-    updated_at: datetime
-
-
-class RequestModel(ABCEntity):  # type: ignore
-    pass
-
-
-class ResponseModel(ABCEntity):  # type: ignore
+class BaseResponseModel(FrozenBaseModel):  # type: ignore
     pass

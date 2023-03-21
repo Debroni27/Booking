@@ -20,6 +20,11 @@ pydantic = {extras = ["dotenv"], version = "^1.10.6"}
 loguru = "^0.6.0"
 mypy = "0.981"
 pre-commit = "^3.2.0"
+pytz = "^2022.7.1"
+python-dateutil = "^2.8.2"
+orjson = "^3.8.8"
+types-python-dateutil = "^2.8.19.10"
+types-pytz = "^2022.7.1.2"
 
 
 [tool.black]
@@ -48,11 +53,10 @@ use_parentheses = true
 check_untyped_defs = true
 color_output = true
 error_summary = true
-install_types = true 
-plugins = ["pydantic.mypy"] 
+install_types = true
 python_version = "3.11"
-pretty = true 
-show_error_codes = true 
+pretty = true
+show_error_codes = true
 strict_optional = true
 warn_no_return = true
 warn_return_any = false

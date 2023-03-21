@@ -2,7 +2,6 @@ import typing
 
 import fastapi
 import loguru
-
 from repository.events import dispose_db_connection, initialize_db_connection
 
 
