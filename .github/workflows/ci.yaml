@@ -1,0 +1,49 @@
+name: Run booking checks
+on:
+  push:
+      branches-ignore:
+        - "master"
+jobs:
+  checks:
+    name: Lint | Test
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.11"
+
+      - name: Cache virtualenv
+        id: venv-cache
+        uses: actions/cache@v3
+        with:
+          path: /.venv
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+
+      - name: Install dependencies
+        if: steps.venv-cache.outputs.cache-hit != 'true'
+        run: |
+          pip install "poetry==1.3.1"
+          poetry install
+
+      - name: Black check
+        uses: psf/black@stable
+        with:
+          options: "--check --verbose"
+          src: "."
+
+      - name: Mypy check
+        run: |
+          source .venv/bin/activate
+          mkdir .mypy_cache
+          mypy --config-file backend/pyproject.toml .
+
+      - name: Teardown containers
+        if: always()
+        run: docker compose down -v --remove-orphans
+
+      - name: Teardown images
+        if: always()
+        run: docker compose down --rmi local

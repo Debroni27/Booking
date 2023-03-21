@@ -5,20 +5,57 @@ x-db:
   database_password_root: &db_password_root "admin"
   database_db_root: &db_name_root "admin"
 
+x-app-settings:
+  app-settings: &app_settings
+    MONGODB_DB_NAME: *db_name_root
+    MONGODB_USENRAME: *db_username_root
+    MONGODB_PASSWORD: *db_password_root
+    SERVER_HOST: 0.0.0.0
+    SERVER_PORT: 8000
+
 services:
+  server:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    container_name: server
+    restart: on-failure
+    depends_on:
+      db:
+        condition: service_started
+    environment: *app_settings
+    ports:
+      - 8000:8000
+    networks:
+      - booking
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
   clickhouse:
-        image: yandex/clickhouse-server
-        hostname: clickhouse
-        container_name: clickhouse
-        ports:
-            - 9001:9000
-        ulimits:
-            nofile:
-                soft: 262144
-                hard: 262144
+    image: yandex/clickhouse-server
+    hostname: clickhouse
+    restart: on-failure
+    container_name: clickhouse
+    ports:
+      - 9001:9000
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    networks:
+      - booking
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
   mongodb:
     image: mongo:latest
-    container_name: mongo 
+    container_name: mongo
     restart: on-failure
     environment:
       MONGO_INITDB_ROOT_USERNAME: *db_username_root
