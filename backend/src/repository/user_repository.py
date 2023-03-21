@@ -1,5 +1,5 @@
-from .base import BaseCRUDRepository
-from models.base import ABCEntity, EntityId
+from src.repository.base import BaseCRUDRepository
+from src.models.base import ABCEntity, EntityId
 
 
 class UserRepository(BaseCRUDRepository):

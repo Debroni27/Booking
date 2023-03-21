@@ -1,5 +1,4 @@
 import fastapi
-import loguru
 
 from motor.motor_asyncio import AsyncIOMotorClient
 

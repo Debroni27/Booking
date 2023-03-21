@@ -1,7 +1,7 @@
 import fastapi
 import loguru
 
-from .database import mongo_db
+from repository.database import mongo_db
 
 
 async def initialize_db_connection(backend_app: fastapi.FastAPI) -> None:

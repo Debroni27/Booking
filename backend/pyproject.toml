@@ -13,36 +13,51 @@ kafka-python = "^2.0.2"
 pymongo = "^4.3.3"
 motor = "^3.1.1"
 mongogrant = "^0.3.3"
-mypy = "^1.1.1"
 black = "^23.1.0"
 isort = "^5.12.0"
-flake8 = "^6.0.0"
 python-decouple = "^3.8"
-pre-commit = "^3.1.1"
 pydantic = {extras = ["dotenv"], version = "^1.10.6"}
 loguru = "^0.6.0"
+mypy = "0.981"
+pre-commit = "^3.2.0"
 
+
+[tool.black]
+color=true
+exclude = ["./git", "./venv"]
+include = '\.pyi?$'
+line-length = 119
 
 [tool.isort]
+color_output = true
+combine_as_imports = true
+ensure_newline_before_comments = true
+force_alphabetical_sort_within_sections = true
+force_grid_wrap = 0
 include_trailing_comma = true
-line_length = 88
+line_length = 119
+lines_between_sections = 1
 multi_line_output = 3
+profile = "black"
+skip_gitignore = true
+skip_glob = ["src/repository/migrations/**",]
+src_paths = ["src/", "tests/",]
+use_parentheses = true
 
 [tool.mypy]
-check_untyped_defs = true 
-disallow_any_unimported = true 
+check_untyped_defs = true
+color_output = true
+error_summary = true
 install_types = true 
-no_implicit_optional = true 
-no_implicit_reexport = true 
-no_warn_no_return = true 
-non_interactive = true 
+plugins = ["pydantic.mypy"] 
+python_version = "3.11"
 pretty = true 
 show_error_codes = true 
-strict_equality = true 
-warn_redundant_casts = true 
-warn_unreachable = true 
+strict_optional = true
+warn_no_return = true
+warn_return_any = false
 ignore_missing_imports = true
-exclude="backend/src/config/"
+exclude = "(src/config|logs|)/"
 
 [build-system]
 requires = ["poetry-core"]

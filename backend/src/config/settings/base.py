@@ -16,8 +16,8 @@ class BackendBaseSettings(pydantic.BaseSettings):
     DESCRIPTION: str | None = None
     DEBUG: bool = False
 
-    SERVER_HOST: str = decouple.config("BACKEND_SERVER_HOST", cast=str)  # type: ignore
-    SERVER_PORT: int = decouple.config("BACKEND_SERVER_PORT", cast=int)  # type: ignore
+    SERVER_HOST: str = decouple.config("BACKEND_SERVER_HOST", cast=str)
+    SERVER_PORT: int = decouple.config("BACKEND_SERVER_PORT", cast=int)
 
     API_PREFIX: str = "/api"
     DOCS_URL: str = "/docs"
@@ -25,12 +25,12 @@ class BackendBaseSettings(pydantic.BaseSettings):
     REDOC_URL: str = "/redoc"
     OPENAPI_PREFIX: str = ""
 
-    MONGODB_HOST: str = decouple.config("MONGODB_HOST", cast=str)  # type: ignore
-    MONGODB_DB_NAME: str = decouple.config("MONGODB_DB_NAME", cast=str)  # type: ignore
-    MONGODB_USENRAME: str = decouple.config("MONGODB_USENRAME", cast=str)  # type: ignore
-    MONGODB_PASSWORD: str = decouple.config("MONGODB_PASSWORD", cast=str)  # type: ignore
+    MONGODB_HOST: str = decouple.config("MONGODB_HOST", cast=str)
+    MONGODB_DB_NAME: str = decouple.config("MONGODB_DB_NAME", cast=str)
+    MONGODB_USENRAME: str = decouple.config("MONGODB_USENRAME", cast=str)
+    MONGODB_PASSWORD: str = decouple.config("MONGODB_PASSWORD", cast=str)
 
-    IS_ALLOWED_CREDENTIALS: bool = decouple.config("IS_ALLOWED_CREDENTIALS", cast=bool)  # type: ignore
+    IS_ALLOWED_CREDENTIALS: bool = decouple.config("IS_ALLOWED_CREDENTIALS", cast=bool)
     ALLOWED_ORIGINS: list[str] = [
         "http://localhost:3000",
         "http://0.0.0.0:3000",

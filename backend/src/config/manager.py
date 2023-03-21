@@ -21,7 +21,9 @@ class BackendSettingsFactory:
 
 @lru_cache()
 def get_settings() -> BackendBaseSettings:
-    return BackendSettingsFactory(environment=decouple.config("ENVIRONMENT", default="DEV", cast=str))()  # type: ignore
+    return BackendSettingsFactory(
+        environment=decouple.config("ENVIRONMENT", default="DEV", cast=str)
+    )()
 
 
 settings: BackendBaseSettings = get_settings()
