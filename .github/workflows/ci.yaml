@@ -31,8 +31,8 @@ jobs:
       - name: Black check
         uses: psf/black@stable
         with:
-          options: "--check --verbose"
-          src: "."
+          options: "--config backend/pyproject.toml"
+          src: "./backend"
 
       - name: Mypy check
         run: |
