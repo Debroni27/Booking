@@ -30,9 +30,9 @@ jobs:
 
       - name: Black check
         uses: psf/black@stable
-        with:
-          options: "--config ./pyproject.toml"
-          src: "./backend"
+        run: |
+          cd ./backend
+          black --config ../pyproject.toml ./
 
       - name: Mypy check
         run: |
