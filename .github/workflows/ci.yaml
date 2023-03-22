@@ -31,14 +31,14 @@ jobs:
       - name: Black check
         uses: psf/black@stable
         with:
-          options: "--config backend/pyproject.toml"
+          options: "--config ./pyproject.toml"
           src: "./backend"
 
       - name: Mypy check
         run: |
           source .venv/bin/activate
           mkdir .mypy_cache
-          mypy --config-file backend/pyproject.toml .
+          mypy --config-file ./pyproject.toml .
 
       - name: Teardown containers
         if: always()
