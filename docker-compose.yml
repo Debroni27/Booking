@@ -23,7 +23,6 @@ services:
     depends_on:
       mongodb:
         condition: service_started
-    entrypoint: ["bash", "./docker/run_server.sh"]
     environment: *app_settings
     ports:
       - 8000:8000

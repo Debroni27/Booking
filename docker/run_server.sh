@@ -13,5 +13,5 @@ while ! $connected; do
     fi
 done
 
-uvicorn backend.src.main:backend_app --reload --workers 4 --host 0.0.0.0 --port 8000
+uvicorn src.main:backend_app --reload --workers 4 --host 0.0.0.0 --port 8000
 

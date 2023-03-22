@@ -36,6 +36,8 @@ ENV PATH="/usr/src/server/.venv/bin:$PATH"
 
 COPY . .
 
-RUN chmod +x /usr/src/server/docker/run_server.sh
+WORKDIR /usr/src/server/backend
 
-ENTRYPOINT ["/usr/src/server/docker/run_server.sh" ]
+RUN chmod +x ../docker/run_server.sh
+
+ENTRYPOINT ["../docker/run_server.sh" ]

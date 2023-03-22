@@ -1,4 +1,5 @@
 import orjson
+
 from pydantic import BaseModel
 
 

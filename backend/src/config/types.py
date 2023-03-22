@@ -1,7 +1,7 @@
 from abc import ABC
 from uuid import UUID, uuid4
 
-from utils.base import ValidatedString
+from src.utils.base import ValidatedString
 
 ENTITY_ID_ALLOWED = False
 

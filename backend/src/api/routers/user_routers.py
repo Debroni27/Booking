@@ -1,6 +1,6 @@
 import fastapi
-from models.base import BaseResponseModel
-from repository.base import BaseCRUDRepository
+from src.models.base import BaseResponseModel
+from src.repository.base import BaseCRUDRepository
 
 router = fastapi.APIRouter(prefix="/users", tags=["users"])
 

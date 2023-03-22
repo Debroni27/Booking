@@ -1,8 +1,8 @@
 import typing
-
 import fastapi
 import loguru
-from repository.events import dispose_db_connection, initialize_db_connection
+
+from src.repository.events import dispose_db_connection, initialize_db_connection
 
 
 def execute_backend_server_event_handler(backend_app: fastapi.FastAPI) -> typing.Any:

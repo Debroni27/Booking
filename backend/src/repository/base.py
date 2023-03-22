@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from config.types import EntityID
-from models.base import FrozenBaseModel
+from src.config.types import EntityID
+from src.models.base import FrozenBaseModel
 
 
 class BaseCRUDRepository(ABC):
