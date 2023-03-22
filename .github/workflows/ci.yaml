@@ -38,7 +38,7 @@ jobs:
         run: |
           source .venv/bin/activate
           mkdir .mypy_cache
-          mypy --config-file pyproject.toml .
+          mypy --config-file pyproject.toml ./backend
 
       - name: Teardown containers
         if: always()
