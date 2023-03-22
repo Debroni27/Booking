@@ -22,7 +22,9 @@ RUN poetry install
 
 FROM python:3.11-slim as runner
 
-RUN apt-get update && apt-get install libpq5 -y
+RUN apt-get update \
+  && apt-get -y install netcat \
+  && apt-get clean
 
 WORKDIR /usr/src/server
 
@@ -32,19 +34,8 @@ COPY --from=builder /usr/src/server/.venv /usr/src/server/.venv
 
 ENV PATH="/usr/src/server/.venv/bin:$PATH"
 
-RUN if [[ "$OSTYPE" == "darwin"* ]]; then\
-    apt-get -y update \
-    && apt-get install -y build-essential gettext libpq-dev\
-    && apt-get install -y wkhtmltopdf\
-    && apt-get install -y gdal-bin\
-    && apt-get install -y libgdal-dev\
-    && apt-get install -y --no-install-recommends software-properties-common\
-    && apt-add-repository contrib\
-    && apt-get update\
-    && apt-get -y install libpq-dev\
-    && pip install psycopg2==2.9.3 ;\
-    fi
-
 COPY . .
 
-WORKDIR /usr/src/server
+RUN chmod +x /usr/src/server/docker/run_server.sh
+
+ENTRYPOINT ["/usr/src/server/docker/run_server.sh" ]

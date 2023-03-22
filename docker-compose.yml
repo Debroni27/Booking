@@ -21,8 +21,9 @@ services:
     container_name: server
     restart: on-failure
     depends_on:
-      db:
+      mongodb:
         condition: service_started
+    entrypoint: ["bash", "./docker/run_server.sh"]
     environment: *app_settings
     ports:
       - 8000:8000
